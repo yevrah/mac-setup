@@ -1,2 +1,4 @@
-echo "hello world"
+#!/bin/bash
+set -x
 
+echo "Mac Mojave Automated Setup"

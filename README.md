@@ -24,4 +24,26 @@ Basics steps include:
 In the `setup.sh` simply add `echo "hello world"` as a quick test, commit, push and test with:
 
     $ curl https://raw.githubusercontent.com/yevrah/mac-setup/master/setup.sh | /bin/bash
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+        100    20  100    20    0     0     59      0 --:--:-- --:--:-- --:--:--    59
+        hello world
+
+> This step has been tagged in https://github.com/yevrah/mac-setup/tree/v0.1
+
+Thats a little versbose, so let's cleanup the curl script. Well add some additional flags to make curl a little more silent. Specifically `-sS` which forces silent mode (`-s`), the `S` option when combined with silent mode shows errors.
+
+    $ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/setup.sh | /bin/bash
+    hello world
+
+Let's also clean up the bash file and make it a little more debug friendly.
+
+    ```bash
+    #!/bin/bash
+    set -x
+
+    echo "Mac Mojave Automated Setup"
+    ```
+
+The `set -x` prints out all commands as they run for the purposes of debugging our script. It is also worthwhile to make it executable with `chmod a+x setup.sh`. This allows us to run the setup using `./setup.sh` for the sake of convenience.
 
