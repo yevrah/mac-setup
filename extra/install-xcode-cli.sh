@@ -4,7 +4,7 @@
 
 # See http://apple.stackexchange.com/questions/107307/how-can-i-install-the-command-line-tools-completely-from-the-command-line
 # https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
-
+# https://stackoverflow.com/questions/15371925/how-to-check-if-command-line-tools-is-installed
 
 echo "Checking Xcode CLI tools"
 # Only run if the tools are not installed yet

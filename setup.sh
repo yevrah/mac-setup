@@ -20,3 +20,8 @@ brew upgrade --all
 echo "Installed from packages.txt list"
 curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.txt | xargs brew install
 
+echo "Install brew cask plugin"
+brew tap caskroom/cask
+
+echo "Installed from packages.cask.txt list"
+curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask.txt | xargs brew install

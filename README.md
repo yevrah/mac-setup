@@ -104,3 +104,34 @@ I preferr to instead just install from the list in packages.txt, this allows me 
     echo "Installed from packages.txt list"
     curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.txt | xargs brew install
 
+# Step 4: Gui Packages with Homebrew Cask
+
+The *Cask* extension for Homebrew offers a way to install graphical applications such as browsers, video players, and much more. It can be isntalled simply by adding the following command to our script:
+
+    brew tap caskroom/cask
+
+You can find packages using `brew search` as in the example below:
+
+    $ brew search vlc
+    ==> Casks
+    vlc
+    vlc-webplugin
+    vlcstreamer
+    homebrew/cask-versions/vlc-nightly
+
+Installation of packages can be done by adding `brew cask install vlc` as an example. But again, it's easier and nicer to just put all the applicates into an `packages.cask.txt` file and installing with:
+
+    
+    echo "Installed from packages.cask.txt list"
+    curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask.txt | xargs brew install
+
+# Step X: Cleanup
+
+    # Remove brew leftovers
+    brew cleanup
+    brew cask cleanup
+    
+# TODO
+
+* Package sshfs failed due to dependancy on osx fuse (which can be installed by brew cask)
+* ffmpeg with all options: https://gist.github.com/Piasy/b5dfd5c048eb69d1b91719988c0325d8
