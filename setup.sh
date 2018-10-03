@@ -3,7 +3,6 @@ set -x
 
 echo "Mac Mojave Automated Setup"
 
-
 # Homebrew section
 echo "Installing HomeBrew"
 if test ! $(which brew)
@@ -25,3 +24,9 @@ brew tap caskroom/cask
 
 echo "Installed from packages.cask.txt list"
 curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask.txt | xargs brew cask install
+
+echo "Installing mas-cli tool for app store packages"
+brew install mas
+
+echo "Installing from packages.mas.txt list"
+cat packages.mas.txt | sed 's/ .*//' | xargs mas install

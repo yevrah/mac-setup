@@ -45,6 +45,10 @@ Let's also clean up the bash file and make it a little more debug friendly.
 
 The `set -x` prints out all commands as they run for the purposes of debugging our script. It is also worthwhile to make it executable with `chmod a+x setup.sh`. This allows us to run the setup using `./setup.sh` for the sake of convenience.
 
+In some cases you may want to pass in additional parameters to your script, for example you may want to disable debugging unless an argument is set. You can do this using the following syntax:
+
+    curl -sS htt.... | bash -s arg1 arg2
+
 ## Step 2: The Homebrew Workhorse
 
 We'll be using `brew` (short for homebrew) to do all the heavy lifting, it's the defactor package manager for Mac. if your not familiar with it head over to their [website](https://docs.brew.sh/). Homebrew can be installed by adding the following to `install.sh`:
@@ -104,7 +108,8 @@ I preferr to instead just install from the list in packages.txt, this allows me 
     echo "Installed from packages.txt list"
     curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.txt | xargs brew install
 
-# Step 4: Gui Packages with Homebrew Cask
+
+## Step 4: Gui Packages with Homebrew Cask
 
 The *Cask* extension for Homebrew offers a way to install graphical applications such as browsers, video players, and much more. It can be isntalled simply by adding the following command to our script:
 
@@ -122,9 +127,26 @@ You can find packages using `brew search` as in the example below:
 Installation of packages can be done by adding `brew cask install vlc` as an example. But again, it's easier and nicer to just put all the applicates into an `packages.cask.txt` file and installing with:
 
     
-    echo "Installed from packages.cask.txt list"
+    echo "Installing from packages.cask.txt list"
     curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask.txt | xargs brew install
 
+## Step 5: Apple Store Packages with mas-cli
+
+Unfortunately cask doesnt handle all gui apps, particularly ones from the app store. You can install this utility with `brew install mas`. This will give you a simple command line tool for the App Store. If you have an existing mac you can use it to get a list of existing apps
+
+    $ mas list
+    497799835 Xcode (10.0)
+    409203825 Numbers (5.2)
+    409183694 Keynote (8.2)
+
+Go ahead and copy this to a file called `packages.mas.txt`. We're going to run it with:
+
+    echo "Installing from packages.mas.txt list"
+    cat packages.mas.txt | sed 's/ .*//' | xargs mas install
+
+Notice the addition of the `sed` command. The mas-cli tools doesnt know what to do with the text part of the package, it only takes the identifier as input. But for the sake of maintenance we have kept the description in. The additional commands just removes the space and everything else after it before sending it through.
+
+    
 # Step X: Cleanup
 
     # Remove brew leftovers
@@ -135,3 +157,9 @@ Installation of packages can be done by adding `brew cask install vlc` as an exa
 
 * Package sshfs failed due to dependancy on osx fuse (which can be installed by brew cask)
 * ffmpeg with all options: https://gist.github.com/Piasy/b5dfd5c048eb69d1b91719988c0325d8
+* Set defaults using similar to https://github.com/why-jay/osx-init/blob/master/install.sh
+* Set dotfiles
+* Configure dotfiles
+* Configure git
+* Configure mysql
+* Configure Apache
