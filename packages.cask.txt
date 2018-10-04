@@ -19,3 +19,4 @@ cyberduck
 freemind
 geektool
 microsoft-office
+sequel-pro
