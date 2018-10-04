@@ -165,4 +165,8 @@ Notice the addition of the `sed` command. The mas-cli tools doesnt know what to 
 * Configure git
 * Configure mysql
 * Configure Apache
+* Use mackup for config backups: https://github.com/lra/mackup
 * Other files to backup: https://medium.com/@abookyun/clean-install-your-mac-without-hesitation-7d379df8fc87
+* Compare to https://github.com/andrewconnell/osx-install
+* Compare to https://github.com/Sbastien/macos-setup
+* Compare performance of xargs -P 8

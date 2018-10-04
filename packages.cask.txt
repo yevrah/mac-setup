@@ -18,3 +18,5 @@ adobe-creative-cloud
 cyberduck
 freemind
 geektool
+microsoft-office
+sequel-pro-nightly
