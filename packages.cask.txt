@@ -1,3 +1,4 @@
+cakebrew
 osxfuse
 1password
 dropbox
@@ -20,3 +21,10 @@ freemind
 geektool
 microsoft-office
 sequel-pro
+diffmerge
+gisto
+openemu
+private-internet-access
+recordit
+qlmarkdown
+macdown

@@ -21,3 +21,4 @@ watch
 ssh-copy-id
 tree
 gnupg
+parallel

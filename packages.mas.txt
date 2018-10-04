@@ -11,3 +11,5 @@
 482898991 LiveReload (2.3.81)
 1013897218 App Cleaner (6.0)
 1090488118 Gemini 2 (2.5.0)
+1176895641 Spark Email Client
+509818877 Type Fu
