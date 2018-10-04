@@ -39,7 +39,7 @@ rm mas-cli.zip
 echo "Please log into the Mac App Store"
 open -a '/Applications/App Store.app'
 
-until (./mas account > /dev/null);
+until (mas account > /dev/null);
 do
     sleep 3
 done
