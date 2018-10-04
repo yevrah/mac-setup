@@ -33,7 +33,7 @@ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask
 cd ~/Downloads
 curl -LO https://github.com/mas-cli/mas/releases/download/v1.4.2/mas-cli.zip
 unzip mas-cli.zip
-mv mas /usr/local/bin/.
+mv -f mas /usr/local/bin/.
 rm mas-cli.zip
 
 echo "Please log into the Mac App Store"
