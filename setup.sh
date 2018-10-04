@@ -32,7 +32,7 @@ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask
 # We need to install mas-cli v 1.42 which is not yet on brew
 cd ~/Downloads
 curl -LO https://github.com/mas-cli/mas/releases/download/v1.4.2/mas-cli.zip
-unzip mas-cli.zip
+unzip -f mas-cli.zip
 mv -f mas /usr/local/bin/.
 rm mas-cli.zip
 
