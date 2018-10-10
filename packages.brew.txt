@@ -1,3 +1,5 @@
+mackup
+asciinema
 ffmpeg
 cowsay
 figlet
@@ -14,6 +16,8 @@ neofetch
 subversion
 the_silver_searcher
 zsh
+zsh-completions
+perl
 python
 python3
 wget
@@ -22,3 +26,4 @@ ssh-copy-id
 tree
 gnupg
 parallel
+rsync

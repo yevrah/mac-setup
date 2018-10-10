@@ -1,8 +1,16 @@
 A Complete Mac Setup (mostly)
 =============================
 
-The repositry contains an automated Mac setup process targeting Mojave. The goal is to have as much as possible automated in an attempt to do a fresh install.
+The repositry contains an automated Mac buit out process targeting OSX Mojave.
+The goal is to have as much as possible automated in an attempt to do a fresh
+install and clean install with little downtime.
 
+This project only looks to get software installed, for settings and dotfiles
+look to the dotfiles project.
+
+The following sections detail how to setup *command line* tools using `brew`,
+*GUI tools* such as Sequel Pro, Skype, etc using `brew cask` and App Store
+software using `mas-cli`.
 
 
 Creating an Automated Build-Out
@@ -10,7 +18,9 @@ Creating an Automated Build-Out
 
 ## Step 0: The zeroth step, setup github and vm
 
-The first step is to setup a github repo for this build out. In addition I will be testing on a vmware fusion setup.
+The first step is to setup a github repo for your build out. In addition it is
+strongly recommended you test a deployment using VMWare Fusion, Parrallels, or
+VirtualBox.
 
 Basics steps include:
 
@@ -21,37 +31,35 @@ Basics steps include:
 
 ## Step 1: Create an install script which can be run github
 
-In the `setup.sh` simply add `echo "hello world"` as a quick test, commit, push and test with:
 
-    $ curl https://raw.githubusercontent.com/yevrah/mac-setup/master/setup.sh | /bin/bash
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-        100    20  100    20    0     0     59      0 --:--:-- --:--:-- --:--:--    59
-        hello world
+In the `setup.sh` simply add `echo "hello world"` as a quick test, commit,
+push. The file should contain the following test code:
 
-> This step has been tagged in https://github.com/yevrah/mac-setup/tree/v0.1
 
-Thats a little versbose, so let's cleanup the curl script. Well add some additional flags to make curl a little more silent. Specifically `-sS` which forces silent mode (`-s`), the `S` option when combined with silent mode shows errors.
+    #!/bin/bash
+    echo "Mac Mojave Automated Setup"
+
+Run this code using the following command from the terminal inside your Mojave virtual machine:
 
     $ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/setup.sh | /bin/bash
     hello world
 
-Let's also clean up the bash file and make it a little more debug friendly.
+We added some additional flags to make curl a little more silent. Specifically
+`-sS` which forces silent mode (`-s`), the `S` option when combined with silent
+mode will show any errors if the request fails.
 
-    #!/bin/bash
-    set -x
-
-    echo "Mac Mojave Automated Setup"
-
-The `set -x` prints out all commands as they run for the purposes of debugging our script. It is also worthwhile to make it executable with `chmod a+x setup.sh`. This allows us to run the setup using `./setup.sh` for the sake of convenience.
-
-In some cases you may want to pass in additional parameters to your script, for example you may want to disable debugging unless an argument is set. You can do this using the following syntax:
+In some cases you may want to pass in additional parameters to your script, for
+example you may want to pass in your Apple Id, in this scenario you would use
+the following syntax:
 
     curl -sS htt.... | bash -s arg1 arg2
 
 ## Step 2: The Homebrew Workhorse
 
-We'll be using `brew` (short for homebrew) to do all the heavy lifting, it's the defactor package manager for Mac. if your not familiar with it head over to their [website](https://docs.brew.sh/). Homebrew can be installed by adding the following to `install.sh`:
+We'll be using `brew` (short for homebrew) to do all the heavy lifting, it's
+the defacto package manager for Mac. if your not familiar with it head over to
+their [website](https://docs.brew.sh/). Homebrew can be installed by adding the
+following to the `install.sh`:
 
     echo "Installing HomeBrew"
     if test ! $(which brew)
@@ -59,40 +67,20 @@ We'll be using `brew` (short for homebrew) to do all the heavy lifting, it's the
       ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
     fi
 
-Because we don't want to coniniously reset our vm we added a quick check to see if it exists and skip or else install.
+Because we don't want to coniniously reset our vm we added a quick check to see
+if it exists and skip or else install. This will be a common theme throughout
+our build out process, it also allows us to use the same script to continue to
+upgrade and update out machine. By doing this we in theory could do a full
+system reset in minimal time.
+
+Go ahead and add the following lines as well, it will help keeping our machine up to date.
 
 
-
-Go ahead and add the following lines as well, it will help to future proof the script, and make it so re-running will update the isntalled packages.
-
-
-    echo "Updating existing homebrew recpies"
+    echo "Updating existing homebrew recpies and formulas"
     brew update
-
-    echo "Upgrading existing installed formulas"
     brew upgrade --all
 
 ## Step 3: Installing packages
-
-Some packages need to be compiled by Homebrew, to do this we need to install the xcode command line tools. The following code allows for a silent install for this dependancy:
-
-
-    echo "Checking Xcode CLI tools"
-    # Only run if the tools are not installed yet
-    # To check that try to print the SDK path
-    xcode-select -p &> /dev/null
-    if [ $? -ne 0 ]; then
-      echo "Xcode CLI tools not found. Installing them..."
-      touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-      PROD=$(softwareupdate -l |
-        grep "\*.*Command Line" |
-        head -n 1 | awk -F"*" '{print $2}' |
-        sed -e 's/^ *//' |
-        tr -d '\n')
-      softwareupdate -i "$PROD" -v;
-    else
-      echo "Xcode CLI tools OK"
-    fi
 
 After you have copied that to your install script, we are now ready to install packages. If you have an existing homebrew system you can export your packages using `brew list > packages.txt`. You'll probably have some items that are no longer relevant, now is the time to cleanup this list.
 
@@ -159,14 +147,8 @@ Notice the addition of the `sed` command. The mas-cli tools doesnt know what to 
 
 * Package sshfs failed due to dependancy on osx fuse (which can be installed by brew cask)
 * ffmpeg with all options: https://gist.github.com/Piasy/b5dfd5c048eb69d1b91719988c0325d8
-* Set defaults using similar to https://github.com/why-jay/osx-init/blob/master/install.sh
-* Set dotfiles
-* Configure dotfiles
-* Configure git
-* Configure mysql
-* Configure Apache
-* Use mackup for config backups: https://github.com/lra/mackup
-* Other files to backup: https://medium.com/@abookyun/clean-install-your-mac-without-hesitation-7d379df8fc87
-* Compare to https://github.com/andrewconnell/osx-install
-* Compare to https://github.com/Sbastien/macos-setup
-* Compare performance of xargs -P 8
+
+# Similar Projects
+
+* Connell's OSX Install: https://github.com/andrewconnell/osx-install
+* SBastiens MacOs Setup: https://github.com/Sbastien/macos-setup
