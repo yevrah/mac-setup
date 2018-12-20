@@ -3,7 +3,7 @@ A Complete Mac Setup (mostly)
 
 The repositry contains an automated Mac buit out process targeting OSX Mojave.
 The goal is to have as much as possible automated in an attempt to do a fresh
-install and clean install with little downtime.
+install and have a clean build with little downtime.
 
 This project only looks to get software installed, for settings and dotfiles
 look to the dotfiles project.
@@ -16,49 +16,31 @@ software using `mas-cli`.
 Creating an Automated Build-Out
 ===============================
 
-## Step 0: The zeroth step, setup github and vm
 
-The first step is to setup a github repo for your build out. In addition it is
-strongly recommended you test a deployment using VMWare Fusion, Parrallels, or
-VirtualBox.
+## Step 1: Running the build out
 
-Basics steps include:
-
-  * Setup github, with a setup.sh file target
-  * Download Mojave from App Store
-  * Create a new VM, the Mojave installer can simply be dragged into VMWare fusion for isntallation
-  * Take a snapshot after VM is installed
-
-## Step 1: Create an install script which can be run github
-
-
-In the `setup.sh` simply add `echo "hello world"` as a quick test, commit,
-push. The file should contain the following test code:
-
-
-    #!/bin/bash
-    echo "Mac Mojave Automated Setup"
 
 Run this code using the following command from the terminal inside your Mojave virtual machine:
 
     $ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/setup.sh | /bin/bash
-    hello world
 
 We added some additional flags to make curl a little more silent. Specifically
 `-sS` which forces silent mode (`-s`), the `S` option when combined with silent
 mode will show any errors if the request fails.
 
-In some cases you may want to pass in additional parameters to your script, for
+Future: In some cases you may want to pass in additional parameters to your script, for
 example you may want to pass in your Apple Id, in this scenario you would use
 the following syntax:
 
     curl -sS htt.... | bash -s arg1 arg2
 
+
 ## Step 2: The Homebrew Workhorse
+
 
 We'll be using `brew` (short for homebrew) to do all the heavy lifting, it's
 the defacto package manager for Mac. if your not familiar with it head over to
-their [website](https://docs.brew.sh/). Homebrew can be installed by adding the
+their [website](https://docs.brew.sh/). Homebrew is installed by adding the
 following to the `install.sh`:
 
     echo "Installing HomeBrew"
@@ -73,7 +55,7 @@ our build out process, it also allows us to use the same script to continue to
 upgrade and update out machine. By doing this we in theory could do a full
 system reset in minimal time.
 
-Go ahead and add the following lines as well, it will help keeping our machine up to date.
+In addiotn the following lines are added as well, it will help keeping our machine up to date.
 
 
     echo "Updating existing homebrew recpies and formulas"
@@ -82,7 +64,13 @@ Go ahead and add the following lines as well, it will help keeping our machine u
 
 ## Step 3: Installing packages
 
-After you have copied that to your install script, we are now ready to install packages. If you have an existing homebrew system you can export your packages using `brew list > packages.txt`. You'll probably have some items that are no longer relevant, now is the time to cleanup this list.
+We are now ready to install
+packages. If you have an existing homebrew system you can export your packages
+using `brew list > packages.txt`. You'll probably have some items that are no
+longer relevant, now is the time to cleanup this list.
+
+Note that there are a bunch of default packages listed in this repo - you may
+want ot change to suit your needs.
 
 You can now simply list a bunch of home brew isntalls using the following syntax
 
@@ -91,7 +79,9 @@ You can now simply list a bunch of home brew isntalls using the following syntax
     brew install git
     ... and so on
 
-I preferr to instead just install from the list in packages.txt, this allows me to modify my installation library without having to touch source code. We'll be using xargs to build the install commands as follows:
+I preferr to instead just install from the list in packages.txt, this allows me
+to modify my installation library without having to touch source code. We'll be
+using xargs to build the install commands which is already in the script:
 
     echo "Installed from packages.txt list"
     curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.txt | xargs brew install
@@ -122,7 +112,10 @@ Installation of packages can be done by adding `brew cask install vlc` as an exa
 
 Note: As off High Sierra mas-cli has been brokern due to change in the App Store api. This issue can be tracked here: https://github.com/mas-cli/mas/issues/164
 
-Unfortunately cask doesnt handle all gui apps, particularly ones from the app store. You can install this utility with `brew install mas`. This will give you a simple command line tool for the App Store. If you have an existing mac you can use it to get a list of existing apps
+Unfortunately cask doesnt handle all gui apps, particularly ones from the app
+store. You can install this utility with `brew install mas`. This will give you
+a simple command line tool for the App Store. If you have an existing mac you
+can use it to get a list of existing apps
 
     $ mas list
     497799835 Xcode (10.0)
@@ -134,7 +127,11 @@ Go ahead and copy this to a file called `packages.mas.txt`. We're going to run i
     echo "Installing from packages.mas.txt list"
     cat packages.mas.txt | sed 's/ .*//' | xargs mas install
 
-Notice the addition of the `sed` command. The mas-cli tools doesnt know what to do with the text part of the package, it only takes the identifier as input. But for the sake of maintenance we have kept the description in. The additional commands just removes the space and everything else after it before sending it through.
+Notice the addition of the `sed` command. The mas-cli tools doesnt know what to
+do with the text part of the package, it only takes the identifier as input.
+But for the sake of maintenance we have kept the description in. The
+additional commands just removes the space and everything else after it
+before sending it through.
 
     
 # Step X: Cleanup
