@@ -28,3 +28,4 @@ private-internet-access
 recordit
 qlmarkdown
 macdown
+webstorm
