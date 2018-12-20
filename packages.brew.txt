@@ -27,3 +27,5 @@ tree
 gnupg
 parallel
 rsync
+yarn
+webpack

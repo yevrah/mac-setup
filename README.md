@@ -20,7 +20,8 @@ Creating an Automated Build-Out
 ## Step 1: Running the build out
 
 
-Run this code using the following command from the terminal inside your Mojave virtual machine:
+Run this code using the following command from the terminal inside your Mojave
+virtual machine:
 
     $ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/setup.sh | /bin/bash
 
@@ -28,9 +29,9 @@ We added some additional flags to make curl a little more silent. Specifically
 `-sS` which forces silent mode (`-s`), the `S` option when combined with silent
 mode will show any errors if the request fails.
 
-Future: In some cases you may want to pass in additional parameters to your script, for
-example you may want to pass in your Apple Id, in this scenario you would use
-the following syntax:
+Future: In some cases you may want to pass in additional parameters to your
+script, for example you may want to pass in your Apple Id, in this scenario you
+would use the following syntax:
 
     curl -sS htt.... | bash -s arg1 arg2
 
@@ -55,7 +56,8 @@ our build out process, it also allows us to use the same script to continue to
 upgrade and update out machine. By doing this we in theory could do a full
 system reset in minimal time.
 
-In addiotn the following lines are added as well, it will help keeping our machine up to date.
+In addiotn the following lines are added as well, it will help keeping our
+machine up to date.
 
 
     echo "Updating existing homebrew recpies and formulas"
@@ -89,7 +91,9 @@ using xargs to build the install commands which is already in the script:
 
 ## Step 4: Gui Packages with Homebrew Cask
 
-The *Cask* extension for Homebrew offers a way to install graphical applications such as browsers, video players, and much more. It can be isntalled simply by adding the following command to our script:
+The *Cask* extension for Homebrew offers a way to install graphical
+applications such as browsers, video players, and much more. It can be
+isntalled simply by adding the following command to our script:
 
     brew tap caskroom/cask
 
@@ -102,7 +106,9 @@ You can find packages using `brew search` as in the example below:
     vlcstreamer
     homebrew/cask-versions/vlc-nightly
 
-Installation of packages can be done by adding `brew cask install vlc` as an example. But again, it's easier and nicer to just put all the applicates into an `packages.cask.txt` file and installing with:
+Installation of packages can be done by adding `brew cask install vlc` as an
+example. But again, it's easier and nicer to just put all the applicates into
+an `packages.cask.txt` file and installing with:
 
     
     echo "Installing from packages.cask.txt list"
