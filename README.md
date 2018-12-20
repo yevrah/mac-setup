@@ -110,7 +110,8 @@ Installation of packages can be done by adding `brew cask install vlc` as an exa
 
 ## Step 5: Apple Store Packages with mas-cli
 
-Note: As off High Sierra mas-cli has been brokern due to change in the App Store api. This issue can be tracked here: https://github.com/mas-cli/mas/issues/164
+Note: As off High Sierra mas-cli has been brokern due to change in the App
+Store api. This issue can be tracked here: https://github.com/mas-cli/mas/issues/164
 
 Unfortunately cask doesnt handle all gui apps, particularly ones from the app
 store. You can install this utility with `brew install mas`. This will give you
