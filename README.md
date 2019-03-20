@@ -151,6 +151,7 @@ before sending it through.
 
 * Package sshfs failed due to dependancy on osx fuse (which can be installed by brew cask)
 * ffmpeg with all options: https://gist.github.com/Piasy/b5dfd5c048eb69d1b91719988c0325d8
+* Migrate script to use `brew bundle` to simplify.
 
 # Similar Projects
 
