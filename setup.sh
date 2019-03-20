@@ -55,7 +55,7 @@ brew install mas
 
 
 # We need to install mas-cli v 1.42 which is not yet on brew, this is necessary
-# as Apple removed command line sign in in High Sierra.
+# as Apple removed command line signing in in High Sierra.
 echo "Installing the mas-cli tool 1.42"
 cd ~/Downloads
 curl -LO https://github.com/mas-cli/mas/releases/download/v1.4.2/mas-cli.zip
