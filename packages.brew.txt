@@ -4,13 +4,11 @@ fortune
 fzf
 ctags
 git
-go
 node
 htop
 ipython
 neovim
 neofetch
-subversion
 the_silver_searcher
 zsh
 zsh-completions
