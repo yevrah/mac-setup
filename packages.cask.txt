@@ -1,10 +1,3 @@
-cakebrew
-osxfuse
-1password
-dropbox
-1password
-little-snitch
-the-unarchiver
 iterm2
 google-chrome
 firefox
@@ -13,12 +6,10 @@ slack
 appcleaner
 google-drive-file-stream
 vmware-fusion
-handbrake
 macvim
 adobe-creative-cloud
 cyberduck
 freemind
-geektool
 microsoft-office
 sequel-pro
 diffmerge
@@ -28,4 +19,8 @@ private-internet-access
 recordit
 qlmarkdown
 macdown
-webstorm
+pycharm
+android-file-transfer
+geektool
+yed
+vlc
