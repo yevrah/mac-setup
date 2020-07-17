@@ -1,6 +1,3 @@
-mackup
-asciinema
-ffmpeg
 cowsay
 figlet
 fortune
@@ -17,6 +14,7 @@ subversion
 the_silver_searcher
 zsh
 zsh-completions
+zsh-syntax-highlighting
 perl
 python
 python3
@@ -24,8 +22,10 @@ wget
 watch
 ssh-copy-id
 tree
-gnupg
 parallel
 rsync
-yarn
-webpack
+youtube-dl
+telnet
+mariadb
+fswatch
+caddy
