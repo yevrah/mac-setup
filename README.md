@@ -1,7 +1,7 @@
 A Complete Mac Setup (mostly)
 =============================
 
-The repositry contains an automated Mac buit out process targeting OSX Mojave.
+The repositry contains an automated Mac buit out process targeting OSX High Sierra.
 The goal is to have as much as possible automated in an attempt to do a fresh
 install and have a clean build with little downtime.
 

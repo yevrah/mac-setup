@@ -2,13 +2,11 @@ cowsay
 figlet
 fortune
 fzf
-ctags
 git
 node
 htop
 ipython
 neovim
-neofetch
 the_silver_searcher
 zsh
 zsh-completions
@@ -24,6 +22,5 @@ parallel
 rsync
 youtube-dl
 telnet
-mariadb
 fswatch
 caddy

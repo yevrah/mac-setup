@@ -21,7 +21,7 @@ grep "\##" $0 | grep -v "grep"
 echo "Installing HomeBrew"
 if test ! $(which brew)
 then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 
@@ -31,18 +31,21 @@ brew upgrade --all
 
 
 echo "Installed from packages.txt list"
-curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.brew.txt | xargs brew install
+# curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.brew.txt | xargs brew install
+cat packages.brew.txt | xargs brew install
 
+exit
 
 #
 # STEP 2: INSTALL GUI APPS
 #
 echo "Install brew cask plugin"
-brew tap caskroom/cask
+brew install cask
 
 
 echo "Installed from packages.cask.txt list"
-curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask.txt | xargs brew cask install
+# curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask.txt | xargs brew cask install
+cat packages.cask.txt | xargs brew install --cask
 
 
 #
@@ -53,19 +56,9 @@ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.cask
 echo "Installing mas-cli tool for app store packages"
 brew install mas
 
-
-# We need to install mas-cli v 1.42 which is not yet on brew, this is necessary
-# as Apple removed command line signing in in High Sierra.
-echo "Installing the mas-cli tool 1.42"
-cd ~/Downloads
-curl -LO https://github.com/mas-cli/mas/releases/download/v1.4.2/mas-cli.zip
-unzip mas-cli.zip
-mv -f mas /usr/local/bin/.
-rm mas-cli.zip
-
 echo ""
 echo "Please log into the Mac App Store"
-open -a '/Applications/App Store.app'
+open -a '/System/Applications/App Store.app'
 
 until (mas account > /dev/null); do
     sleep 3
@@ -73,7 +66,8 @@ done
 
 
 echo "Installing from packages.mas.txt list"
-curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.mas.txt | sed 's/ .*//' | xargs mas install
+# curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.mas.txt | sed 's/ .*//' | xargs mas install
+cat packages.mas.txt | sed 's/ .*//' | xargs mas install
 
 
 #
