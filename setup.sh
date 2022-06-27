@@ -34,7 +34,6 @@ echo "Installed from packages.txt list"
 # curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.brew.txt | xargs brew install
 cat packages.brew.txt | xargs brew install
 
-exit
 
 #
 # STEP 2: INSTALL GUI APPS
