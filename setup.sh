@@ -27,7 +27,7 @@ fi
 
 echo "Updating existing homebrew receipes and formulas"
 brew update
-brew upgrade --all
+brew upgrade
 
 
 echo "Installed from packages.txt list"

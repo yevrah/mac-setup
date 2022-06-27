@@ -54,11 +54,17 @@ cd mac-setup
 
 
 
+### Security Permissions
+
+Note, on new versions of macOS you need to give terminal permission to the disk so it can install software.
+
+![](assets/2022-06-27-16-09-48-image.png)
+
+
+
 ## How To Test
 
 It is recommended you test this on a VM first before depending on it for full machine recovery. A few quick iterations will ensure you have captured everything - including various settings and shortcuts you may have missed that can be added to the script.
-
-
 
 # How Does It Work
 
