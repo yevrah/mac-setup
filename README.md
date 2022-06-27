@@ -2,7 +2,11 @@ A Complete Mac Setup Tool
 =============================
 
 This repository contains an automated build out process targeting macOS.
+
+
 You can have most of your tools and applications setup in  a fresh install and creating a clean build with little downtime.
+
+
 
 This project only looks to get software installed. For applications settings look at solutions like [mackup](https://github.com/lra/mackup) or my [dotfiles](https://github.com/yevrah/dotfiles) restore [script](https://github.com/yevrah/dotfiles/blob/master/bin/restore.sh).
 
@@ -41,39 +45,28 @@ After you have captured all your command line tools and desktop apps into the ap
 I use github, it makes it easy to download an entire repository by selecting "Code -> Download Zip". Simply extract and run the setup command.
 
 ```bash
+curl https://github.com/yevrah/mac-setup/archive/refs/heads/master.zip -L -o mac-setup.zip
+unzip mac-setup.zip
+
 cd mac-setup
 ./setup.sh
 ```
 
 
 
+## How To Test
+
+It is recommended you test this on a VM first before depending on it for full machine recovery. A few quick iterations will ensure you have captured everything - including various settings and shortcuts you may have missed that can be added to the script.
+
+
+
 # How Does It Work
 
-## Step 1: Running the build out
+## The Homebrew Workhorse
 
-Run this code using the following command from the terminal inside your Mojave
-virtual machine:
-
-```
-$ curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/setup.sh | /bin/bash
-```
-
-We added some additional flags to make curl a little more silent. Specifically `-sS` which forces silent mode (`-s`), the `S` option when combined with silent
-mode will show any errors if the request fails.
-
-Future: In some cases you may want to pass in additional parameters to your
-script, for example you may want to pass in your Apple Id, in this scenario you
-would use the following syntax:
-
-```
-curl -sS htt.... | bash -s arg1 arg2
-```
-
-## Step 2: The Homebrew Workhorse
-
-We'll be using `brew` (short for homebrew) to do all the heavy lifting, it's
+We are using `brew` (short for homebrew) to do all the heavy lifting, it's
 the defacto package manager for Mac. if your not familiar with it head over to
-their [website](https://docs.brew.sh/). Homebrew is installed by adding the
+their [website](https://docs.brew.sh/). Homebrew is installed by automatically as we added the
 following to the `install.sh`:
 
 ```
@@ -84,13 +77,13 @@ then
 fi
 ```
 
-Because we don't want to coniniously reset our vm we added a quick check to see
+Because we don't want to continuously reset our vm we added a quick check to see
 if it exists and skip or else install. This will be a common theme throughout
 our build out process, it also allows us to use the same script to continue to
 upgrade and update out machine. By doing this we in theory could do a full
 system reset in minimal time.
 
-In addiotn the following lines are added as well, it will help keeping our
+In adition the following lines are added as well, it will help keeping our
 machine up to date.
 
 ```
@@ -99,7 +92,7 @@ brew update
 brew upgrade --all
 ```
 
-## Step 3: Installing packages
+## Installing packages
 
 We are now ready to install
 packages. If you have an existing homebrew system you can export your packages
@@ -127,7 +120,7 @@ echo "Installed from packages.txt list"
 curl -sS https://raw.githubusercontent.com/yevrah/mac-setup/master/packages.txt | xargs brew install
 ```
 
-## Step 4: Gui Packages with Homebrew Cask
+## Gui Packages with Homebrew Cask
 
 The *Cask* extension for Homebrew offers a way to install graphical
 applications such as browsers, video players, and much more. It can be
@@ -187,7 +180,7 @@ But for the sake of maintenance we have kept the description in. The
 additional commands just removes the space and everything else after it
 before sending it through.
 
-# Step X: Cleanup
+# Cleanup
 
 ```
 # Remove brew leftovers
@@ -202,7 +195,9 @@ brew cask cleanup
 - Migrate script to use `brew bundle` to simplify.
 - Some basic defaults. eg screenshot folder `defaults write com.apple.screencapture location $HOME/Screenshots/`
 
-===============================
+
+
+---
 
 # Similar Projects
 
