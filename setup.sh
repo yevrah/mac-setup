@@ -76,4 +76,3 @@ cat packages.mas.txt | sed 's/ .*//' | xargs mas install
 # Remove brew leftovers
 echo "Cleanup brew left overs"
 brew cleanup
-brew cask cleanup

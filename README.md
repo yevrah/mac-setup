@@ -52,8 +52,6 @@ cd mac-setup
 ./setup.sh
 ```
 
-
-
 ### Security Permissions
 
 Note, on new versions of macOS you need to give terminal permission to the disk so it can install software.
