@@ -38,7 +38,7 @@ mas list
 
 
 
-After you have captured all your command line tools and desktop apps into the appropriate text file I recommend you store it somewhere easily reachable. 
+After you have captured all your command line tools and desktop apps into the appropriate text file I recommend you store it somewhere easily reachable.
 
 
 
@@ -51,6 +51,8 @@ unzip mac-setup.zip
 cd mac-setup
 ./setup.sh
 ```
+
+[direct download link](https://github.com/yevrah/mac-setup/archive/refs/heads/master.zip)
 
 ### Security Permissions
 
