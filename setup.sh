@@ -14,6 +14,8 @@
 #
 grep "\##" $0 | grep -v "grep"
 
+# STEP 0: INSTALL DEPS
+xcode-select --install
 
 #
 # STEP 1: INSTALL AND UPDATE COMMAND LINE TOOLS

@@ -1,6 +1,5 @@
 adobe-creative-cloud
 android-file-transfer
-appcleaner
 cyberduck
 diffmerge
 firefox
@@ -10,10 +9,10 @@ iterm2
 mark-text
 openemu
 pycharm
+datagrip
 microsoft-office
 openemu
 sequel-ace
-skype
-slack
 vlc
-vmware-fusion
+logseq
+sublime-text
